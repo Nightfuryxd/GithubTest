@@ -19,9 +19,11 @@ jobs:
       with:
         node-version: '14.x'
 
+    - name: Install Node
+      run: sudo apt-get install nodejs
     
     - name: Install NPM
-      run: sudo install npm
+      run: sudo apt install npm
     
     - name: Install dependencies
       run: npm install express
