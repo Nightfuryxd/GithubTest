@@ -26,7 +26,7 @@ jobs:
       run: sudo apt install npm
     
     - name: Install dependencies
-      run: npm install express
+      run: npm init
    
     - name: Install Nodemon 
       run: npm install nodemon --save-dev
