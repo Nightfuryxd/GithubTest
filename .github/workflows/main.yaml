@@ -19,9 +19,13 @@ jobs:
       with:
         node-version: '14.x'
 
+    
+    - name: Install NPM
+      run: sudo install npm
+    
     - name: Install dependencies
       run: npm install express
-      
+   
     - name: Install Nodemon 
       run: npm install nodemon --save-dev
 
