@@ -1,22 +1,42 @@
-name: CI Pipeline
+name: Node.js CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '14.x'
-        
+
     - name: Install dependencies
-      run: npm install
+      run: npm install express
       
+    - name: Install Nodemon 
+      run: npm install nodemon --save-dev
+
     - name: Run tests
-      run: npm test
+      run: node server.js
+
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: false
+        tags: your-docker-image-name
+
+    - name: Run Docker container
+      uses: docker/compose-action@1.0.0
+      with:
+        compose-file: docker-compose.yml
+        service-name: your-service-name
